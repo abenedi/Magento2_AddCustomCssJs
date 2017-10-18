@@ -1,0 +1,58 @@
+﻿Installation guide by ABenedi
+
+Module: 		Abenedi_AddCustomCssJs 
+Version:		1.0
+Description:	This module allows you to include customized CSS and/or Javascript into your Magento 2 installation.
+
+Installation Steps:
+
+Step 1:
+
+	Unzip the file Abenedi_AddCustomCssJs_v1.0.rar
+	Copy the folder "app/*" and all the contents to your Magento 2 root installation. (use FTP)
+	
+	
+Step 2:	(Use SSH)
+
+	Resgiter the Module, Upgrade and Compile.
+	
+		php bin/magento module:enable Abenedi_AddCustomCssJs
+		
+		php bin/magento setup:upgrade
+		
+		php bin/magento setup:di:compile
+	
+	
+Step 3: (Use SSH)
+
+	Clean Cache and Deploy the statics.
+	
+		php bin/magento cache:clean
+		
+		php bin/magento cache:flush
+		
+		php bin/magento setup:static-content:deploy
+		
+		
+#####################
+#   Tips & Tricks:  #
+#####################
+
+	- You can include CSS or Javascript for all the pages here:
+	
+		app/code/Abenedi/AddCustomCssJs/view/frontend/web
+		
+			custom.js	--> You can use the included "snippet" to wait 'till jQuery-Framwork is loaded.
+			custom.css	--> You can use "!important" property to overwrite other styles.
+			
+	- When you make changes to the files, not to forget to clean Cache: (warning: if you have installed a cache server like Varnish you may have to restart it. Also flush CDNs if any configured!)
+	
+		Option a: Backoffice > System > Cache Management > Flush CSS/JavaScript Cache.
+		
+		Option b: via command line:
+		
+			php bin/magento cache:clean
+				
+			
+			
+©2017 by Abenedi
